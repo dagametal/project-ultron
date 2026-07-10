@@ -1,2 +1,14 @@
+# Dependencias
 node_modules/
+
+# Configuración local con credenciales
 jira-config.js
+.env
+
+# Plantillas versionadas (excepciones)
+!jira-config.example.js
+!*.example.js
+!*.example
+
+# Sistema operativo
+.DS_Store
