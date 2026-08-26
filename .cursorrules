@@ -1,0 +1,12 @@
+# Ultron
+
+Cuando el usuario pida eliminar, borrar o excluir casos de prueba de una Test Execution:
+
+- Quítalos solo de esa Test Execution de Jira/Xray (el issue).
+- No modifiques estos scripts:
+  - `prod-release/create-basic-smoke-test-execution.js`
+  - `prod-release/create-functional-test-execution.js`
+  - `prod-release/create-complete-smoke-test-execution.js`
+- No agregues listas de exclusión, filtros ni keys de tests fijas en el código por una limpieza puntual.
+
+Esos 3 JS deben seguir asociando los casos como ya están definidos (Test Sets y, en complete-smoke, diccionario + set fijo). Quitar casos de una TE existente no cambia el flujo de creación por defecto.

@@ -1,0 +1,172 @@
+[
+  {
+    "id": "bolsillos",
+    "nombre": "Bolsillos / Pockets",
+    "historia": ["pocket", "pockets", "bolsillo", "bolsillos", "pockets-api"],
+    "test": ["bolsillo", "bolsillos", "pocket", "pockets", "rentabilidad"]
+  },
+  {
+    "id": "bre-b",
+    "nombre": "Bre-B / digital-money",
+    "historia": ["bre-b", "breb", "bre b", "llave", "digital-money", "digital money"],
+    "test": ["bre-b", "breb", "bre b", "llave"]
+  },
+  {
+    "id": "2fa",
+    "nombre": "2FA / OTP",
+    "historia": ["2fa", "otp", "segundo factor", "PUSH/QR"],
+    "test": ["2fa", "otp", "push", "reto"]
+  },
+  {
+    "id": "tx-service",
+    "nombre": "tx-service / transaction-api",
+    "historia": [
+      "tx-service",
+      "transaction-api",
+      "transactions-api",
+      "transaction api",
+      "transactions api"
+    ],
+    "test": [
+      "transferencia",
+      "transferencias",
+      "transfiere",
+      "giro",
+      "donacion",
+      "donaciones",
+      "avance",
+      "retiro"
+    ]
+  },
+  {
+    "id": "payments",
+    "nombre": "payments",
+    "historia": ["payments", "payments-api", "hipotecario", "recarga"],
+    "test": ["pago", "pagos", "hipotecario", "recargas", "historico"]
+  },
+  {
+    "id": "bills",
+    "nombre": "bills / pagos servicios y PILA",
+    "historia": ["bills", "bills-api", "pila", "facturador", "aportante"],
+    "test": ["pila", "planilla", "aportante", "facturador", "servicios"]
+  },
+  {
+    "id": "pse-api",
+    "nombre": "pse-api",
+    "historia": ["pse-api", "pse", "transfiya"],
+    "test": ["pse"]
+  },
+  {
+    "id": "avalpay",
+    "nombre": "Aval Pay",
+    "historia": ["avalpay", "aval pay", "avalpay-api"],
+    "test": ["aval pay", "avalpay"]
+  },
+  {
+    "id": "contacts",
+    "nombre": "contacts / contactos",
+    "historia": ["contacts", "contacts-api", "contacto", "contactos", "agenda"],
+    "test": ["contacto", "contactos"]
+  },
+  {
+    "id": "product-operation",
+    "nombre": "product-operation / medios de manejo",
+    "historia": [
+      "product-operation",
+      "product operation",
+      "medios de manejo",
+      "medio de manejo"
+    ],
+    "test": ["medios de manejo", "medio de manejo", "bloqueo temporal"]
+  },
+  {
+    "id": "product-detail",
+    "nombre": "product-detail / movimientos",
+    "historia": ["product-detail", "product detail", "movimientos"],
+    "test": ["movimientos"]
+  },
+  {
+    "id": "product-information",
+    "nombre": "product-information / nickname",
+    "historia": ["product-information", "product information", "nickname", "nicknames"],
+    "test": ["nickname", "nicknames"]
+  },
+  {
+    "id": "management-api",
+    "nombre": "management-api / CDT TCV TDD",
+    "historia": ["management-api", "management api", "cdt", "tcv", "tdd"],
+    "test": ["cdt", "tcv", "tdd", "renovar", "reexpedicion"]
+  },
+  {
+    "id": "notifications-api",
+    "nombre": "notifications-api / alertas",
+    "historia": ["notifications-api", "notifications api", "alerta", "alertas"],
+    "test": ["alerta", "alertas"]
+  },
+  {
+    "id": "auth",
+    "nombre": "auth / login",
+    "historia": ["auth", "autenticacion", "login", "clave universal"],
+    "test": ["clave universal", "autenticacion", "banca virtual"]
+  },
+  {
+    "id": "enrollment",
+    "nombre": "enrollment / enrolamiento",
+    "historia": ["enrollment", "enrolamiento", "olvido"],
+    "test": ["registra", "olvido", "otp"]
+  },
+  {
+    "id": "comprobantes",
+    "nombre": "Descarga de comprobantes",
+    "historia": ["comprobante", "comprobantes"],
+    "test": ["comprobante", "comprobantes"]
+  },
+  {
+    "id": "actualizacion-datos",
+    "nombre": "Actualización de datos",
+    "historia": [
+      "actualizacion de datos",
+      "actualización de datos",
+      "actualizar datos"
+    ],
+    "test": [
+      "actualizacion de datos",
+      "actualización de datos",
+      "actualizar datos"
+    ]
+  },
+  {
+    "id": "statements-service",
+    "nombre": "statements-service / extractos",
+    "historia": ["statements-service", "statements", "extracto", "extractos", "certificado"],
+    "test": ["extractos", "certificado", "constitucion"]
+  },
+  {
+    "id": "virtual-tour",
+    "nombre": "virtual-tour",
+    "historia": ["virtual-tour", "tour virtual"],
+    "test": ["tour virtual"]
+  },
+  {
+    "id": "biometrics",
+    "nombre": "biometrics / biometria",
+    "historia": [
+      "biometrics",
+      "biometria",
+      "biometría",
+      "biometria facial",
+      "ado",
+      "jumio",
+      "incode",
+      "become",
+      "olimpia"
+    ],
+    "test": ["biometria", "biometría"]
+  },
+  {
+    "id": "mfe",
+    "nombre": "Micro frontends",
+    "historia": ["mfe", "micro frontend", "microfrontend", "micro-frontend"],
+    "test": ["mfe", "visualmente"]
+  }
+]

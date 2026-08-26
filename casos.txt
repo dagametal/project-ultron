@@ -1,3 +1,3 @@
-optimizar consulta bre b llave no guardada
-optimizar consulta bre b llave guardada
-
+Olvido con PUSH PB transaction risk V4
+olvido con QR PB transaction risk V4
+olvido de contraseña BF transaction risk V4

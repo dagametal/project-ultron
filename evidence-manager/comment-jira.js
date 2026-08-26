@@ -9,7 +9,7 @@ const {
   EMAIL,
   API_TOKEN,
   FOLDER_PATH,
-} = require("./jira-config");
+} = require("../jira-config");
 
 // =====================
 const auth = {

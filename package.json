@@ -2,9 +2,18 @@
   "name": "ultron",
   "version": "1.0.0",
   "description": "",
-  "main": "upload-jira.js",
+  "main": "evidence-manager/upload-jira.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "smoke": "node prod-release/create-basic-smoke-test-execution.js",
+    "smoke:basic": "node prod-release/create-basic-smoke-test-execution.js",
+    "smoke:complete": "node prod-release/create-complete-smoke-test-execution.js",
+    "regression": "node prod-release/create-functional-test-execution.js",
+    "test-plan": "node prod-release/create-test-plan.js",
+    "comment": "node evidence-manager/comment-jira.js",
+    "comment:txt": "node evidence-manager/comment-jira-from-txt.js",
+    "upload": "node evidence-manager/upload-jira.js",
+    "create-te": "node prod-release/create-basic-smoke-test-execution.js",
+    "create-functional-te": "node prod-release/create-functional-test-execution.js"
   },
   "keywords": [],
   "author": "",

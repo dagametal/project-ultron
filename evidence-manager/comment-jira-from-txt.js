@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const axios = require("axios");
 const readline = require("readline");
 
@@ -8,9 +9,9 @@ const {
   ISSUE_KEY,
   EMAIL,
   API_TOKEN
-} = require("./jira-config");
+} = require("../jira-config");
 
-const FILE_PATH = "./casos.txt";
+const FILE_PATH = path.join(__dirname, "..", "casos.txt");
 
 const auth = {
   username: EMAIL,
