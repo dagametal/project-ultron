@@ -1,0 +1,14 @@
+---
+description: Usar AskQuestion en vez de texto plano para cualquier pregunta al usuario durante skills
+alwaysApply: true
+---
+
+# Estándar de preguntas en skills
+
+Cuando una skill necesite una decisión o dato del usuario:
+
+- Usa la herramienta `AskQuestion` con opciones clickeables. **No** escribas las opciones como texto plano, letras, números o bullets en el chat.
+- Para opciones cerradas (sí/no, canal BM/PB, etc.) usa botones.
+- Para datos abiertos (versión, número de issue) el usuario puede responder con la opción "Other" de `AskQuestion` o puedes pedirlo como texto en una pregunta de seguimiento.
+- Pasa las respuestas al helper como flags o argumentos CLI. No uses `readline` ni stdin para recoger input del usuario.
+- Si el usuario ya dio el dato en su mensaje original, no lo vuelvas a preguntar.

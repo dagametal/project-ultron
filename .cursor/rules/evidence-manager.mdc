@@ -1,0 +1,20 @@
+---
+description: Comentarios y carga de evidencias contra ISSUE_KEY
+globs: evidence-manager/**,casos.txt
+alwaysApply: false
+---
+
+# evidence-manager
+
+Trabajan contra `ISSUE_KEY` y, si aplica, `FOLDER_PATH` de `jira-config.js`. No hardcodees issue ni rutas.
+
+| Comando | Entrada | Efecto |
+| --- | --- | --- |
+| `npm run comment` | archivos en `FOLDER_PATH` | comentario ADF con nombres limpios |
+| `npm run comment:txt` | `casos.txt` (raíz) | tabla ADF; pregunta si ordenar A-Z |
+| `npm run upload` | archivos en `FOLDER_PATH` | adjuntos + comentario con enlace |
+
+- Comentarios: Jira REST `/rest/api/3/issue/{key}/comment` con documento ADF.
+- Adjuntos: `/rest/api/3/issue/{key}/attachments` con header `X-Atlassian-Token: no-check`.
+- `casos.txt`: una línea por caso; líneas vacías se ignoran.
+- Limpieza de nombres: quitar extensión, fechas, browsers; correcciones y tildes van en el script de comment, no en upload.

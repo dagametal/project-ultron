@@ -1,0 +1,10 @@
+---
+description: Auto-descubrimiento de skills vía SKILLS_INDEX.md (patrón Skill Master)
+alwaysApply: true
+---
+
+# Skill Master
+
+Antes de ejecutar cualquier tarea compleja de automatización, consulta `SKILLS_INDEX.md`. Si la solicitud del usuario coincide con alguna Skill del catálogo, carga sus instrucciones automáticamente antes de responder. Si el usuario pregunta qué skills existen o pide un resumen, léele la tabla de `SKILLS_INDEX.md`. Además, cada vez que creemos, modifiquemos o eliminemos una Skill, debes actualizar `SKILLS_INDEX.md` de forma obligatoria.
+
+Índice: `.cursor/skills/SKILLS_INDEX.md`.

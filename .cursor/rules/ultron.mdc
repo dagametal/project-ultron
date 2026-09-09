@@ -1,0 +1,21 @@
+---
+description: Identidad de Ultron, credenciales y criterios que no hay que romper
+alwaysApply: true
+---
+
+# Ultron
+
+Automatiza en Jira/Xray (`https://avaldigitallabs.atlassian.net`, proyecto `AVCD`) Test Plans, Test Executions y evidencias de releases de producción.
+
+- Documentación de proceso: `docs/funcionamiento.md`
+- Credenciales: `jira-config.js` (no versionado). Plantilla: `jira-config.example.js`
+- Nunca commits de `jira-config.js`, tokens ni secretos
+- Comandos desde la raíz del repo. Versión: `x.x.x` (ej. `4.12.0`); el script la resuelve contra **versiones corregidas** (`Release` / `Releases`)
+- Responde en el idioma del usuario
+
+## Criterios fijos
+
+- Quitar casos de un TE existente: solo en ese issue de Jira/Xray. No cambies los scripts de creación ni agregues exclusiones fijas.
+- Humo básico y regresión leen **todos** los casos actuales del Test Set en Xray.
+- Humo completo: diccionario (`prod-release/funcionalidades.json`) + Test Set fijo `AVCD-4346`. No una lista de keys hardcodeada.
+- Si una HU nueva no entra al humo completo, amplía el diccionario; no basta con meter el caso solo al Test Set.

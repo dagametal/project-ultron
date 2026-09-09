@@ -1,3 +1,3 @@
-Olvido con PUSH PB transaction risk V4
-olvido con QR PB transaction risk V4
-olvido de contraseña BF transaction risk V4
+Login 2FA ON, usuario PUSH
+Login 2FA ON, usuario OTP
+Login 2FA ON, usuario ALLOW

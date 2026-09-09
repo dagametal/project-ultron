@@ -10,7 +10,7 @@
     "regression": "node prod-release/create-functional-test-execution.js",
     "test-plan": "node prod-release/create-test-plan.js",
     "comment": "node evidence-manager/comment-jira.js",
-    "comment:txt": "node evidence-manager/comment-jira-from-txt.js",
+    "comment:file": "node evidence-manager/comment-jira-from-txt.js",
     "upload": "node evidence-manager/upload-jira.js",
     "create-te": "node prod-release/create-basic-smoke-test-execution.js",
     "create-functional-te": "node prod-release/create-functional-test-execution.js"

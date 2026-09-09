@@ -2,6 +2,7 @@ const readline = require("readline");
 const axios = require("axios");
 
 // npm run test-plan -- "Release 4.12.0"
+// node prod-release/create-test-plan.js 4.12.0 --te 4614 --terminado
 
 const {
   JIRA_URL,
@@ -14,6 +15,8 @@ const {
 } = require("../jira-config");
 
 const ASSIGNEE_QUERY = "diegoan.garcia";
+const ESTADO_EN_PRUEBAS = "En pruebas";
+const ESTADO_TERMINADO = "Terminado";
 
 const auth = {
   username: EMAIL,
@@ -39,8 +42,41 @@ function preguntar(texto) {
   });
 }
 
-async function preguntarVersion() {
-  const desdeArgs = process.argv.slice(2).join(" ").trim();
+function parseArgs(argv) {
+  const rest = [];
+  let te = null;
+  let terminado = false;
+
+  for (let i = 0; i < argv.length; i += 1) {
+    const arg = argv[i];
+    if (arg === "--terminado") {
+      terminado = true;
+      continue;
+    }
+    if (arg === "--te") {
+      const next = argv[i + 1];
+      if (!next || next.startsWith("--")) {
+        throw new Error("Falta el valor de --te (ej. --te 4614).");
+      }
+      te = next;
+      i += 1;
+      continue;
+    }
+    if (arg.startsWith("--te=")) {
+      te = arg.slice("--te=".length);
+      continue;
+    }
+    rest.push(arg);
+  }
+
+  return {
+    versionInput: rest.join(" ").trim(),
+    te: te ? String(te).trim() : null,
+    terminado,
+  };
+}
+
+async function preguntarVersion(desdeArgs) {
   if (desdeArgs) return desdeArgs;
   return preguntar("Versión corregida (ej. Release 3.11.1): ");
 }
@@ -71,6 +107,15 @@ function extraerNumeroVersion(texto) {
 
 function normalizar(texto) {
   return texto.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function normalizarEstado(texto) {
+  return String(texto || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function resolverVersion(input, versiones) {
@@ -179,6 +224,42 @@ async function obtenerIssue(key) {
   return data;
 }
 
+async function obtenerTransiciones(issueKey) {
+  const { data } = await axios.get(
+    `${JIRA_URL}/rest/api/3/issue/${issueKey}/transitions`,
+    { auth, headers },
+  );
+  return data.transitions || [];
+}
+
+async function transicionarA(issueKey, estadoDestino) {
+  const destino = normalizarEstado(estadoDestino);
+  if (destino === "bloqueado") {
+    throw new Error("No se permite transicionar a Bloqueado.");
+  }
+
+  const transiciones = await obtenerTransiciones(issueKey);
+  const transicion = transiciones.find(
+    (t) => normalizarEstado(t.to?.name) === destino,
+  );
+
+  if (!transicion) {
+    const disponibles = transiciones
+      .map((t) => t.to?.name)
+      .filter(Boolean)
+      .join(", ");
+    throw new Error(
+      `No hay transición a "${estadoDestino}" desde ${issueKey}. Disponibles: ${disponibles || "ninguna"}`,
+    );
+  }
+
+  await axios.post(
+    `${JIRA_URL}/rest/api/3/issue/${issueKey}/transitions`,
+    { transition: { id: transicion.id } },
+    { auth, headers },
+  );
+}
+
 async function autenticarXray() {
   if (!XRAY_CLIENT_ID || !XRAY_CLIENT_SECRET) {
     throw new Error(
@@ -245,15 +326,7 @@ async function asociarTestExecution(token, testPlanId, testExecutionId) {
   return data.addTestExecutionsToTestPlan;
 }
 
-async function preguntarYAsociarTE(testPlan) {
-  const quiereAsociar = await preguntarSiNo(
-    "¿Añadir una Test Execution a este Test Plan? (s/n): ",
-  );
-  if (!quiereAsociar) return;
-
-  const numero = await preguntar(
-    `Número de la TE (ej. 4447 → ${PROJECT_KEY}-4447): `,
-  );
+async function asociarTEAlPlan(testPlan, numero) {
   const teKey = resolverKeyTE(numero);
   if (!teKey) {
     throw new Error(
@@ -276,13 +349,26 @@ async function preguntarYAsociarTE(testPlan) {
   console.log(`✅ Asociada ${te.key}: ${te.fields.summary}`);
 }
 
+async function preguntarYAsociarTE(testPlan) {
+  const quiereAsociar = await preguntarSiNo(
+    "¿Añadir una Test Execution a este Test Plan? (s/n): ",
+  );
+  if (!quiereAsociar) return;
+
+  const numero = await preguntar(
+    `Número de la TE (ej. 4447 → ${PROJECT_KEY}-4447): `,
+  );
+  await asociarTEAlPlan(testPlan, numero);
+}
+
 async function main() {
   try {
     if (!PROJECT_KEY) {
       throw new Error("Falta PROJECT_KEY en jira-config.js (ej. AVCD).");
     }
 
-    const input = await preguntarVersion();
+    const cli = parseArgs(process.argv.slice(2));
+    const input = await preguntarVersion(cli.versionInput);
     if (!input) {
       throw new Error("Debes indicar la versión, por ejemplo: Release 3.11.1");
     }
@@ -313,7 +399,29 @@ async function main() {
     console.log(`✅ Creado ${issue.key}`);
     console.log(`🔗 ${url}`);
 
-    await preguntarYAsociarTE(issue);
+    console.log(`🔄 Pasando a ${ESTADO_EN_PRUEBAS}...`);
+    await transicionarA(issue.key, ESTADO_EN_PRUEBAS);
+    console.log(`📌 Estado: ${ESTADO_EN_PRUEBAS}`);
+
+    if (cli.te) {
+      await asociarTEAlPlan(issue, cli.te);
+    } else {
+      await preguntarYAsociarTE(issue);
+    }
+
+    const quiereTerminar = cli.terminado
+      ? true
+      : cli.te
+        ? false
+        : await preguntarSiNo(
+            `¿Cambiar el Test Plan de ${ESTADO_EN_PRUEBAS} a ${ESTADO_TERMINADO}? (s/n): `,
+          );
+    if (quiereTerminar) {
+      await transicionarA(issue.key, ESTADO_TERMINADO);
+      console.log(`📌 Estado: ${ESTADO_TERMINADO}`);
+    } else {
+      console.log(`📌 Estado: ${ESTADO_EN_PRUEBAS}`);
+    }
   } catch (error) {
     const detalle = error.response?.data || error.message;
     console.log("❌ Error:", detalle);

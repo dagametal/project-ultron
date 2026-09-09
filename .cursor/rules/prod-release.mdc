@@ -1,0 +1,27 @@
+---
+description: Convenciones de Test Plans y Test Executions de release
+globs: prod-release/**
+alwaysApply: false
+---
+
+# prod-release
+
+Los scripts leen Test Sets en Xray al momento de ejecutar. No hardcodees keys de tests.
+
+| Script | npm | Casos |
+| --- | --- | --- |
+| `create-basic-smoke-test-execution.js` | `smoke` / `smoke:basic` | Todo el set: `AVCD-4345` (BM) o `AVCD-4346` (PB) |
+| `create-complete-smoke-test-execution.js` | `smoke:complete` | HU de la versión + match de `funcionalidades.json` sobre `AVCD-2387` + todos de `AVCD-4346` |
+| `create-functional-test-execution.js` | `regression` | Todo `AVCD-2387` |
+| `create-test-plan.js` | `test-plan` | Plan vacío; asocia una TE por número (`4447` → `AVCD-4447`) |
+
+## Asociar casos
+
+- Crear el issue: Jira REST (`issuetype: Test Execution` o Test Plan, `fixVersions`).
+- Meter tests en el TE: Xray GraphQL (`addTestsToTestExecution` / `addTestSetsToTestExecution`), no comentarios de Jira.
+- Auth Xray: `POST /api/v2/authenticate` con `XRAY_CLIENT_ID` / `XRAY_CLIENT_SECRET`.
+- `issueId` de Xray es el id numérico de Jira, no la key (`AVCD-123`).
+
+## Humo completo
+
+Match por palabra completa tras normalizar (minúsculas, sin tildes). Ampliar cobertura = editar `funcionalidades.json`, no filtrar keys en el JS.

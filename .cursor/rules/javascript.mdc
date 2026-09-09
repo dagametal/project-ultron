@@ -1,0 +1,17 @@
+---
+description: Estilo CommonJS de los scripts Node de Ultron
+globs: **/*.js
+alwaysApply: false
+---
+
+# JavaScript (scripts)
+
+- CommonJS: `require` / `module.exports`. El package es `"type": "commonjs"`.
+- HTTP con `axios`. Credenciales siempre desde `../jira-config` (o `./jira-config` en raíz). Nunca tokens en el código.
+- Prompts con `readline`. Si hay argumento CLI, úsalo; si no, pregunta.
+- Auth Jira: `{ username: EMAIL, password: API_TOKEN }` + `Accept` / `Content-Type: application/json`.
+- Descripciones de issue en ADF (`type: "doc", version: 1`), no wiki markup.
+- Xray GraphQL: si `data.errors` tiene items, lanza el JSON; no ignores warnings (`resultado.warning`).
+- Batches de 50 al agregar tests a un TE. Paginación Xray: `limit` 100 y `start` hasta `total`.
+- Búsqueda Jira: `POST /rest/api/3/search/jql` con `nextPageToken`, no el search clásico deprecado.
+- No extraigas un módulo compartido salvo que el usuario lo pida; estos scripts se ejecutan por npm y se mantienen independientes.

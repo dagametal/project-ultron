@@ -1,0 +1,16 @@
+---
+description: Analizar y proponer antes de tocar archivos; implementar solo con confirmación explícita
+alwaysApply: true
+---
+
+# Confirmar antes de implementar
+
+Ante cualquier cambio (código, tests, config, docs, scripts):
+
+1. Analizar si es posible.
+2. Proponer el enfoque (POM, selectores estables, sin duplicar, tipado estricto).
+3. NO crear, editar ni borrar archivos todavía.
+
+Implementar SOLO con confirmación explícita: implementalo / hazlo / aplícalo / adelante / sí, implementa.
+
+NO cuenta como confirmación: preguntas, “quiero hacer X” sin pedir que se escriba, discutir diseño o revisar un archivo.
