@@ -1,0 +1,27 @@
+---
+description: Tabla fija para reportar el resultado de qa-cierre
+alwaysApply: true
+---
+
+# Reporte de QA: Cierre
+
+Cuando termines un `qa-cierre`, el mensaje al usuario es **solo** esta tabla. Copia la que imprime `evidence-manager/qa-cierre.js` (keys ya van como markdown). No uses bullets, listas ni un resumen aparte.
+
+```markdown
+Cierre de QA listo para [AVCD-2443](https://avaldigitallabs.atlassian.net/browse/AVCD-2443).
+
+| Qué | Resultado |
+| --- | --- |
+| HU | [AVCD-2443](https://avaldigitallabs.atlassian.net/browse/AVCD-2443) — Listo para pruebas → En pruebas → **validacion po** |
+| Subtarea | [AVCD-4882](https://avaldigitallabs.atlassian.net/browse/AVCD-4882) **QA: Cierre** (creada, asignada a `diegoan.garcia`) — **Terminado** |
+| TE | [AVCD-4630](https://avaldigitallabs.atlassian.net/browse/AVCD-4630) asignada a `diegoan.garcia`, Por Hacer → En pruebas → **Terminado** |
+| Tests | AVCD-4687 … AVCD-4691 a **Terminado** |
+| Xray | 5 runs TO DO/EXECUTING → **PASSED**. Ningún FAILED |
+| Comentario | Evidencias: [AVCD-4630](https://avaldigitallabs.atlassian.net/browse/AVCD-4630) (smart link) |
+```
+
+- Encabezado: `Cierre de QA listo para {HU}.`
+- Filas fijas, en este orden: HU, Subtarea, TE, Tests, Xray, Comentario.
+- En Subtarea: `creada` o `ya existía`.
+- Si hay FAILED: en HU indica que no se movió; en Xray lista los no tocados.
+- Si el JS falló, no armes esta tabla: muestra el error.

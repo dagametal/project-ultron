@@ -1,20 +1,22 @@
 ---
-description: Comentarios y carga de evidencias contra ISSUE_KEY
+description: Comentarios, carga de evidencias y cierre QA de una HU
 globs: evidence-manager/**,casos.txt
 alwaysApply: false
 ---
 
 # evidence-manager
 
-Trabajan contra `ISSUE_KEY` y, si aplica, `FOLDER_PATH` de `jira-config.js`. No hardcodees issue ni rutas.
+`comment` / `comment:txt` / `upload` trabajan contra `ISSUE_KEY` y, si aplica, `FOLDER_PATH` de `jira-config.js`. No hardcodees issue ni rutas. `qa-cierre` toma la HU por argv (`AVCD-XXXX` o `XXXX`), no `ISSUE_KEY`.
 
 | Comando | Entrada | Efecto |
 | --- | --- | --- |
 | `npm run comment` | archivos en `FOLDER_PATH` | comentario ADF con nombres limpios |
 | `npm run comment:txt` | `casos.txt` (raíz) | tabla ADF; pregunta si ordenar A-Z |
 | `npm run upload` | archivos en `FOLDER_PATH` | adjuntos + comentario con enlace |
+| `npm run qa-cierre` | key de HU (`AVCD-XXXX` o `XXXX`); si hay varias TE, `--te` | subtarea QA: Cierre, Terminado de TE/Tests vinculados, PASSED en Xray, comentario de evidencias, HU en validacion po |
 
 - Comentarios: Jira REST `/rest/api/3/issue/{key}/comment` con documento ADF.
 - Adjuntos: `/rest/api/3/issue/{key}/attachments` con header `X-Atlassian-Token: no-check`.
 - `casos.txt`: una línea por caso; líneas vacías se ignoran.
 - Limpieza de nombres: quitar extensión, fechas, browsers; correcciones y tildes van en el script de comment, no en upload.
+- `qa-cierre`: asignado fijo `diegoan.garcia` (subtarea y TE). Comentario ADF `Evidencias: ` + `inlineCard`. Subtarea a Terminado (vía En Desarrollo si no hay En pruebas) antes de mover la HU. FAILED en Xray no se marcan PASSED y no mueven la HU.

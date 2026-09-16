@@ -105,13 +105,14 @@ Al final pregunta si se quiere añadir una Test Execution. Si la respuesta es **
 
 ## 4. Evidencias
 
-Trabajan contra el `ISSUE_KEY` definido en `jira-config.js`.
+`comment` / `comment:txt` / `upload` trabajan contra el `ISSUE_KEY` definido en `jira-config.js`. `qa-cierre` recibe la HU por argumento.
 
 | Comando | Qué hace |
 | --- | --- |
 | `npm run comment` | Comenta el issue a partir de los nombres de archivos en `FOLDER_PATH` |
 | `npm run comment:txt` | Comenta una tabla ADF leída de `casos.txt` (pregunta si ordenar alfabéticamente) |
 | `npm run upload` | Sube los archivos de `FOLDER_PATH` como adjuntos y comenta con el enlace |
+| `npm run qa-cierre -- 4549` | Cierra QA de una HU: subtarea QA: Cierre, TE/Tests a Terminado, PASSED en Xray, comentario de evidencias, HU en validacion po |
 
 ---
 
@@ -136,6 +137,7 @@ Trabajan contra el `ISSUE_KEY` definido en `jira-config.js`.
 | `npm run comment` | `evidence-manager/comment-jira.js` |
 | `npm run comment:txt` | `evidence-manager/comment-jira-from-txt.js` |
 | `npm run upload` | `evidence-manager/upload-jira.js` |
+| `npm run qa-cierre` | `evidence-manager/qa-cierre.js` |
 
 La versión se pasa con `--`, por ejemplo: `npm run regression -- "4.12.0"`.
 

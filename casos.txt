@@ -1,3 +1,3 @@
-Login 2FA ON, usuario PUSH
-Login 2FA ON, usuario OTP
-Login 2FA ON, usuario ALLOW
+Cifrado storage smoke pagos
+Cifrado storage smoke transferencia bre b
+Cifrado storage smoke transferencia
