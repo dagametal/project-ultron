@@ -32,7 +32,7 @@ No inventes el canal.
 
 ## 2. Ejecutar
 
-Desde la raíz del repo, con **ambos** datos:
+Desde la raíz del repo, con **ambos** datos. El `node` a Jira/Xray **siempre** con `required_permissions: ["full_network"]` en la **primera** llamada Shell. El sandbox con red limitada da 403. No uses `all` salvo que falle la lectura de `jira-config.js`.
 
 ```bash
 node .cursor/skills/fast-release-documentation/scripts/run.js 4.11.1 BM

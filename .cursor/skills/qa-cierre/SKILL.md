@@ -16,7 +16,7 @@ Acepta Historia, Story y Tech Story. Si pasa un Test Execution o una subtarea, n
 
 ## 2. Ejecutar
 
-Desde la raíz del repo:
+Desde la raíz del repo. El `node` a Jira/Xray **siempre** con `required_permissions: ["full_network"]` en la **primera** llamada Shell. El sandbox con red limitada da 403. No uses `all` salvo que falle la lectura de `jira-config.js`.
 
 ```bash
 node evidence-manager/qa-cierre.js AVCD-4549

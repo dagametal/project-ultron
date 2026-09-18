@@ -19,7 +19,7 @@ Si el release **no existe** en Jira (`Release` / `Releases`), **no crees nada**.
 
 ## 2. Ejecutar las TE
 
-Desde la raíz del repo:
+Desde la raíz del repo. El `node` a Jira/Xray **siempre** con `required_permissions: ["full_network"]` en la **primera** llamada Shell (incluye `--vincular-plan`). El sandbox con red limitada da 403. No uses `all` salvo que falle la lectura de `jira-config.js`.
 
 ```bash
 node .cursor/skills/smoke-and-regression-test-pb/scripts/run.js 4.11.1
