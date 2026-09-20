@@ -1,7 +1,7 @@
 ---
-name: qa-cierre
-description: Cierra QA de una HU AVCD (Historia / Story / Tech Story): crea o reutiliza la subtarea QA: Cierre, pasa TE y Tests vinculados a Terminado, marca runs TO DO/EXECUTING como PASSED en Xray, comenta evidencias con smart link, termina la subtarea y deja la HU en validacion po. Use when the user says qa-cierre, QA: Cierre, cierre de HU, o cerrar certificación.
-when_to_use: El usuario dice qa-cierre, QA: Cierre, cierre de HU, cerrar certificación, o pide crear QA: Cierre y pasar evidencias de una HU.
+name: qa-closure
+description: Cierra QA de una HU AVCD (Historia / Story / Tech Story): crea o reutiliza la subtarea QA: Cierre, pasa TE y Tests vinculados a Terminado, marca runs TO DO/EXECUTING como PASSED en Xray, comenta evidencias con smart link, termina la subtarea y deja la HU en validacion po. Use when the user says qa-closure, qa-cierre, QA: Cierre, cierre de HU, o cerrar certificación.
+when_to_use: El usuario dice qa-closure, qa-cierre, QA: Cierre, cierre de HU, cerrar certificación, o pide crear QA: Cierre y pasar evidencias de una HU.
 ---
 
 # QA: Cierre

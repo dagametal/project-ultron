@@ -1,11 +1,11 @@
 ---
-description: Tabla fija para reportar el resultado de qa-cierre
+description: Tabla fija para reportar el resultado de qa-closure
 alwaysApply: true
 ---
 
 # Reporte de QA: Cierre
 
-Cuando termines un `qa-cierre`, el mensaje al usuario es **solo** esta tabla. Copia la que imprime `evidence-manager/qa-cierre.js` (keys ya van como markdown). No uses bullets, listas ni un resumen aparte.
+Cuando termines un `qa-closure`, el mensaje al usuario es **solo** esta tabla. Copia la que imprime `evidence-manager/qa-cierre.js` (keys ya van como markdown). No uses bullets, listas ni un resumen aparte.
 
 ```markdown
 Cierre de QA listo para [AVCD-2443](https://avaldigitallabs.atlassian.net/browse/AVCD-2443).
