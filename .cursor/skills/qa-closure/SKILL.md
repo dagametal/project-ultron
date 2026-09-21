@@ -1,6 +1,6 @@
 ---
 name: qa-closure
-description: Cierra QA de una HU AVCD (Historia / Story / Tech Story): crea o reutiliza la subtarea QA: Cierre, pasa TE y Tests vinculados a Terminado, marca runs TO DO/EXECUTING como PASSED en Xray, comenta evidencias con smart link, termina la subtarea y deja la HU en validacion po. Use when the user says qa-closure, qa-cierre, QA: Cierre, cierre de HU, o cerrar certificación.
+description: Cierra QA de una HU o Error AVCD (Historia / Story / Tech Story / Error): crea o reutiliza la subtarea QA: Cierre, pasa TE y Tests vinculados a Terminado, marca runs TO DO/EXECUTING como PASSED en Xray, comenta evidencias con smart link, termina la subtarea y deja el issue en validacion po. Use when the user says qa-closure, qa-cierre, QA: Cierre, cierre de HU, o cerrar certificación.
 when_to_use: El usuario dice qa-closure, qa-cierre, QA: Cierre, cierre de HU, cerrar certificación, o pide crear QA: Cierre y pasar evidencias de una HU.
 ---
 
@@ -12,7 +12,7 @@ Ejecuta `evidence-manager/qa-cierre.js`. **No lo reimplementes** con MCP ni edit
 
 Necesitas la key (`AVCD-4549` o `4549`). Si el usuario no la dio, usa `AskQuestion` (puede escribirla en "Other"). No arranques sin ella.
 
-Acepta Historia, Story y Tech Story. Si pasa un Test Execution o una subtarea, no inventes la HU: el JS falla y tú reportas el error.
+Acepta Historia, Story, Tech Story y Error. Si pasa un Test Execution o una subtarea, no inventes el issue: el JS falla y tú reportas el error.
 
 ## 2. Ejecutar
 

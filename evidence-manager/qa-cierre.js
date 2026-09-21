@@ -16,7 +16,7 @@ const {
 
 const ASSIGNEE_QUERY = "diegoan.garcia";
 const SUMMARY_CIERRE = "QA: Cierre";
-const TIPOS_HU = ["Historia", "Story", "Tech Story"];
+const TIPOS_HU = ["Historia", "Story", "Tech Story", "Error"];
 const TIPO_TE = "Test Execution";
 const TIPO_TEST = "Test";
 const TIPO_SUBTAREA = "Subtarea";
@@ -580,7 +580,7 @@ async function main() {
   const tipoHu = hu.fields?.issuetype?.name || "";
   if (!TIPOS_HU.includes(tipoHu)) {
     throw new Error(
-      `${hu.key} es "${tipoHu}", no una HU (${TIPOS_HU.join(", ")}).`,
+      `${hu.key} es "${tipoHu}". Tipos admitidos: ${TIPOS_HU.join(", ")}.`,
     );
   }
 

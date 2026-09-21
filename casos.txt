@@ -1,3 +1,3 @@
-Cifrado storage smoke pagos
-Cifrado storage smoke transferencia bre b
-Cifrado storage smoke transferencia
+Creación de Bolsillo por debajo del monto permitido
+Creación de Bolsillo por encima del monto permitido(error)
+Modificar bolsillo y tratar de exceder el monto
