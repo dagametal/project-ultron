@@ -8,6 +8,8 @@ when_to_use: El usuario dice qa-closure, qa-cierre, QA: Cierre, cierre de HU, ce
 
 Ejecuta `evidence-manager/qa-cierre.js`. **No lo reimplementes** con MCP ni edites los JS de humo/regresión.
 
+Programación opcional: `hora: HH:mm` (regla `.cursor/rules/skill-schedule.mdc`). Parsea la HU **después** de quitar `hora: …`.
+
 ## 1. Pedir la HU si falta
 
 Necesitas la key (`AVCD-4549` o `4549`). Si el usuario no la dio, usa `AskQuestion` (puede escribirla en "Other"). No arranques sin ella.

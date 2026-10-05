@@ -1,3 +1,8 @@
-Creación de Bolsillo por debajo del monto permitido
-Creación de Bolsillo por encima del monto permitido(error)
-Modificar bolsillo y tratar de exceder el monto
+mis-contactos/crear
+mis-contactos/detalle/:id/:idType
+transferencias/inscripcion/cuenta
+transferencias/a-contactos/hacia/nueva-cuenta
+pagos/creditos-tarjetas/inscripcion/datos
+pagos/creditos-tarjetas/pago/datos-pse
+compra-cartera/tarjeta-de-credito/valor
+compra-cartera/credito-rotativo/valor

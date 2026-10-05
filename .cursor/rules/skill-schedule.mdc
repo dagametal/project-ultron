@@ -1,0 +1,53 @@
+---
+description: Programar skills con hora: HH:mm; sin hora, ejecutar de inmediato
+alwaysApply: true
+---
+
+# Programación de skills (`hora:`)
+
+Aplica a **cualquier invocación de skill** del repo (Ultron) antes de ejecutar scripts, `node`, MCP de escritura o pasos pesados de la skill.
+
+## Detectar
+
+Patrón en el mensaje del usuario (case-insensitive en la palabra `hora`):
+
+- `hora: HH:mm` o `hora: H:mm` (24 h)
+- Opcional fecha después: `hora: 14:55 30/09/2026` (`DD/MM/AAAA`)
+
+Extrae ese fragmento y **quítalo** del resto del mensaje. Lo que queda es el **payload** de la skill (ej. `qa-closure 335`, `fast-release-documentation 4.13.0 PB`).
+
+**Sin** patrón `hora:` → no intervenir; ejecutar la skill **ahora** según su `SKILL.md`.
+
+No trates frases sueltas como “a las 16:45” o “hoy a las …” como programación salvo que vayan en formato `hora: HH:mm`. Si el usuario quiso programar pero no usó `hora:`, sugiere reenviar con `hora: HH:mm`.
+
+## Zona y fecha
+
+- Zona por defecto: **America/Bogota** (Colombia).
+- Sin fecha en el mensaje → **hoy** en esa zona.
+
+## Si `hora:` apunta al futuro
+
+1. **Prohibido** en este turno: `node`, scripts npm de skills, transiciones Jira/Xray, Playwright, o cualquier paso de ejecución de la skill.
+2. Calcula segundos hasta el instante objetivo.
+3. Programa un **wake one-shot** (skill `/loop`, sección *Monitored shell output* → *Dynamic Schedule*): `sleep` en background + sentinel `AGENT_LOOP_WAKE_skill-schedule` + JSON con el **payload sin `hora:`**.
+4. **No** ejecutes el payload al armar el wake (evita doble corrida).
+5. Responde solo confirmación: key/skill, fecha y hora programadas, zona Bogotá, texto **“No ejecutado aún”**. No entregues informes finales de la skill hasta el wake.
+
+## Al recibir el wake
+
+Ejecuta el payload como invocación normal de skill (**sin** `hora:`): carga el `SKILL.md` que corresponda y sigue su flujo.
+
+## Si la hora ya pasó hoy
+
+`AskQuestion`: ejecutar ahora | programar mañana a esa misma hora | cancelar. No adivines.
+
+## Requisitos operativos
+
+- **Agent mode**; Cursor abierto; equipo despierto hasta la hora.
+- Skills que requieran VPN/SSO/credenciales: recuerda en la confirmación que deben estar listos a la hora programada.
+
+## Qué no hacer
+
+- No interpretar `hora:` como metadata si está en formato `hora: HH:mm`.
+- No usar `/loop` con “run once immediately” si eso ejecuta la skill antes del `sleep`.
+- No duplicar wakes para el mismo payload sin que el usuario lo pida.

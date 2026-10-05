@@ -2,6 +2,8 @@
 
 Catálogo de habilidades de automatización de Ultron. Antes de una tarea compleja, el agente consulta este índice y carga la `SKILL.md` que coincida.
 
+**Programación (todas las skills):** opcional `hora: HH:mm` (24 h, Bogotá; hoy salvo `DD/MM/AAAA` después). Sin `hora:` → ejecutar ya. Regla: `.cursor/rules/skill-schedule.mdc`.
+
 | Nombre de la Skill | Descripción Corta | Cuándo Usarla (Triggers / Casos de uso) | Entradas Requeridas |
 | --- | --- | --- | --- |
 | Fast release documentation | Crea la documentación de un release AVCD: Test Execution de humo básico + Test Plan asociado y en estado Terminado (Banca Mobile o Portal Bancario). | El usuario dice `fast-release-documentation`, documentación de release, documentar release, o pide humo básico y Test Plan juntos para BM/PB. | Versión `x.x.x` (ej. `4.12.0`); canal `BM` o `PB`; credenciales en `jira-config.js` (`EMAIL`, `API_TOKEN`, `XRAY_CLIENT_ID`, `XRAY_CLIENT_SECRET`). No pide screenshots. |
