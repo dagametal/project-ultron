@@ -1,2 +1,4 @@
-Envio Datos Formulario 1
-Envio Datos Formulario 1
+Pago pendiente 
+Pago Rechazado
+Pago Exitoso
+Pago Exitoso con reintentos de Notificación
