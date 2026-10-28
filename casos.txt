@@ -1,4 +1,4 @@
-Pago pendiente 
-Pago Rechazado
-Pago Exitoso
-Pago Exitoso con reintentos de Notificación
+Transferencia Bre-B: Se inicia la transacción desde la aplicación y, durante el proceso de pago, la aplicación es enviada a segundo plano. Se evidencia el correcto funcionamiento del flujo, sin afectaciones en la transacción.
+Pago con QR: Se inicia la transacción desde la aplicación y, durante el proceso de pago, la aplicación es enviada a segundo plano. Se evidencia el correcto funcionamiento del flujo, completando la operación satisfactoriamente.
+Transferencia Bre-B: Se inicia la transacción desde la aplicación y, durante el proceso de pago, la aplicación es enviada a segundo plano. Se evidencia el correcto funcionamiento del flujo, sin afectaciones en la transacción.
+Pago con QR: Se inicia la transacción desde la aplicación y, durante el proceso de pago, la aplicación es enviada a segundo plano. Se evidencia el correcto funcionamiento del flujo, completando la operación satisfactoriamente.

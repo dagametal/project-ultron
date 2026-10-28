@@ -44,9 +44,9 @@ S10 Moral (Retrospectiva)
 
 ## Demo
 
-| Historia | Test Execution | En la hoja |
-| --- | --- | --- |
-| [AVCD-4815](https://avaldigitallabs.atlassian.net/browse/AVCD-4815) Envío SMS desde canal | [AVCD-4909](https://avaldigitallabs.atlassian.net/browse/AVCD-4909) | 🟢 |
+| Historia | Estado | Test Execution | En la hoja |
+| --- | --- | --- | --- |
+| [AVCD-4815](https://avaldigitallabs.atlassian.net/browse/AVCD-4815) Envío SMS desde canal | 🟢 Listo para pruebas | [AVCD-4909](https://avaldigitallabs.atlassian.net/browse/AVCD-4909) | 🟢 |
 
 ## Publicaciones
 
@@ -69,8 +69,9 @@ Upgrade stack tecnológico backend microservicio contacts-api
 - Presentación y Demo van siempre. Publicaciones solo si el mensaje trae al menos un `x.x.x`.
 - Fechas del sprint: `16 sep – 30 sep` (mes en minúscula, guion `–`, sin año).
 - Tareas y omitidas: solo el título. Omitidas llevan el tipo entre paréntesis. Sin subtareas en ninguna de las dos.
-- Demo: solo Historias. Keys como link de Jira. Varias Test Execution en la misma celda, separadas por `, `. Sin Test Execution: `—`.
-- Tercera columna `En la hoja` si hay tablero usable (`.cursor/data/hu-actuales.json` con keys, o imagen/keys en el mensaje que lo actualizaron). 🟢 si el número de la historia está en el tablero, 🔴 si no.
+- Demo: solo Historias. Keys como link de Jira. Segunda columna **Estado**: emoji + nombre de estado Jira (🟢 Listo para pruebas / En pruebas; 🟡 En Desarrollo / Por Hacer y resto activo; 🔴 Bloqueado; ⚪ validacion po / RELEASE / Terminado / En producción). Varias Test Execution en la misma celda, separadas por `, `. Sin Test Execution: `—`.
+- Cuarta columna `En la hoja` si hay tablero usable (`.cursor/data/hu-actuales.json` con keys, o imagen/keys en el mensaje que lo actualizaron). 🟢 si el número de la historia está en el tablero, 🔴 si no. Sin tablero usable, Demo con tres columnas (sin `En la hoja`).
+- Demo — orden de filas: (1) 🟢 en la hoja antes que 🔴, si hay cuarta columna; (2) arriba estados `validacion po`, `RELEASE`, `Terminado` (nombre Jira, normalizado); (3) desempate rank del sprint (orden JQL `ORDER BY rank ASC`).
 - Publicaciones: un bloque por versión, en el orden enviado. Títulos exactos `Fecha de publicación` y `Actividades de release`. Fecha `DD/MM/AAAA`. Sin Test Plan ni Test Execution.
 - Versión inexistente: una línea `{versión} no existe en Jira.` y sin bloques de esa versión.
 - Versión sin `releaseDate`: el bloque de fecha vacío y la lista sí.

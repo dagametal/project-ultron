@@ -1,6 +1,6 @@
 ---
 name: review-sprint
-description: Revisa un sprint AVCD del backlog (presentación y demo) y, si vienen versiones x.x.x, las publicaciones. Use when the user says review-sprint, revisar sprint, o review-sprint seguido de un número de sprint.
+description: Revisa un sprint AVCD (presentación, demo de Historias con estado/TE/en la hoja) y publicaciones si vienen versiones x.x.x. Use when the user says review-sprint, revisar sprint, o review-sprint seguido de un número de sprint.
 when_to_use: El usuario dice review-sprint, revisar sprint, o `review-sprint 10` (el número es el sprint). Opcional: versiones `x.x.x` e imagen de Historias de Usuario para actualizar el tablero compartido.
 ---
 
@@ -25,7 +25,7 @@ Tras resolver entrada, carga el conjunto de IDs del tablero:
 - Si el mensaje trajo imagen o keys, usa las keys recién guardadas.
 - Si no, lee `.cursor/data/hu-actuales.json` si existe.
 
-Demo lleva la columna **En la hoja** si ese conjunto no está vacío (archivo o actualización en el mismo mensaje). Si no hay archivo usable ni imagen/keys en el mensaje, Demo sin tercera columna.
+Demo lleva la columna **En la hoja** (cuarta) si ese conjunto no está vacío (archivo o actualización en el mismo mensaje). Si no hay archivo usable ni imagen/keys en el mensaje, Demo sin cuarta columna (Historia, Estado, Test Execution).
 
 Comparación: el ID es el número al inicio de la celda de Historias de Usuario en la hoja (`4815` → coincide con `AVCD-4815`). Para cada Historia del sprint, el número de su key debe estar en `keys` del tablero (`335` no coincide con `1335`). 🟢 si coincide, 🔴 si no.
 
@@ -54,7 +54,7 @@ Listas, orden `rank`, `summary` recortado, una línea, sin key:
 
 ## 2. Demo
 
-Otra búsqueda, mismos campos más `issuelinks`:
+Otra búsqueda. Campos: `summary`, `issuetype`, `status`, `issuelinks`. Pagina con `nextPageToken` si hace falta.
 
 ```
 project = AVCD AND sprint = "AVCD Sprint {n}" AND issuetype = Story ORDER BY rank ASC
@@ -62,9 +62,20 @@ project = AVCD AND sprint = "AVCD Sprint {n}" AND issuetype = Story ORDER BY ran
 
 `Story` en JQL es el tipo **Historia**. No incluyas Tech Story, Error, Tarea ni el resto.
 
-Test Execution: enlace cuyo `type.name` es `Test` y el issue ligado (`inwardIssue` o `outwardIssue`) tiene `issuetype.name` `Test Execution`. Ignora los de tipo Test. Si hay varias, todas en la celda. Si no hay, `—`.
+Columnas, en este orden:
 
-Columna **En la hoja**: ver sección Tablero arriba.
+1. **Historia**: key como link de Jira + `summary`.
+2. **Estado**: emoji + nombre de `fields.status.name` (misma convención que priority-tasks-organizer): 🟢 `Listo para pruebas`, `En pruebas`; 🟡 `En Desarrollo`, `Por Hacer` y resto activo no bloqueado; 🔴 `Bloqueado`; ⚪ `validacion po`, `RELEASE`, `Terminado`, `En producción`.
+3. **Test Execution**: enlace cuyo `type.name` es `Test` y el issue ligado (`inwardIssue` o `outwardIssue`) tiene `issuetype.name` `Test Execution`. Ignora los de tipo Test. Si hay varias, todas en la celda. Si no hay, `—`.
+4. **En la hoja**: ver sección Tablero arriba (solo si hay tablero usable).
+
+**Orden de filas** (después de armar todas las Historias; la JQL sigue `ORDER BY rank ASC` solo para traer datos y desempatar):
+
+1. **En la hoja** (cuarta columna): arriba 🟢 (key en el tablero), abajo 🔴. Si Demo va sin cuarta columna (sin tablero), salta este criterio.
+2. **Estado** (segunda columna): arriba las cuyo `fields.status.name` normalizado (minúsculas, sin tildes) es `validacion po`, `release` o `terminado`; abajo el resto.
+3. **Rank del sprint**: orden de aparición en la respuesta JQL paginada (`ORDER BY rank ASC`), sin reordenar entre páginas.
+
+No ordenes por key, summary ni TE.
 
 ## 3. Publicaciones
 
