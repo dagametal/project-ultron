@@ -1,5 +1,8 @@
 {
   "updatedAt": "2026-09-22T15:30:00-05:00",
   "source": "image",
-  "keys": ["AVCD-4891", "AVCD-1301", "AVCD-4815"]
+  "keys": ["AVCD-4891", "AVCD-1301", "AVCD-4815"],
+  "qa": {
+    "AVCD-4891": "QA_Equipo"
+  }
 }

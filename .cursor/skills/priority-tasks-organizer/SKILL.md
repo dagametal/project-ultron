@@ -8,7 +8,7 @@ when_to_use: El usuario dice priority-tasks-organizer, siguiente tarea, prioriza
 
 Consulta Jira con las keys del tablero y ranquea. **No crees ni transiciones issues.** El reporte es el de `.cursor/rules/priority-tasks-organizer-report.mdc`.
 
-Tablero compartido con **review-sprint**: `.cursor/data/hu-actuales.json` (plantilla: `hu-actuales.example.json`). Solo `keys` en orden de la hoja; títulos y estados vienen de Jira en cada corrida.
+Tablero compartido con **review-sprint**: `.cursor/data/hu-actuales.json` (plantilla: `hu-actuales.example.json`). `keys` en orden de la hoja; `qa` guarda solo las keys en `QA_Equipo`. El resto del reporte es `QA`. Títulos y estados vienen de Jira en cada corrida.
 
 ## 1. Resolver keys del tablero
 
@@ -23,17 +23,24 @@ Tras extraer o normalizar keys, escribe el JSON:
 {
   "updatedAt": "<ISO8601>",
   "source": "image",
-  "keys": ["AVCD-4815", "AVCD-4891"]
+  "keys": ["AVCD-4815", "AVCD-4891"],
+  "qa": {
+    "AVCD-4891": "QA_Equipo"
+  }
 }
 ```
 
 `source`: `image` o `keys`. Usa esas keys para esta corrida.
 
-**Leer** sin pedir imagen si no hay imagen ni keys en el mensaje: abre `.cursor/data/hu-actuales.json`. Si existe y `keys` tiene al menos un elemento, úsalo. No pidas captura en ese caso.
+`qa` solo incluye keys cuya celda es `QA_Equipo`. Columna ausente, celda vacía, otro texto o actualización solo con keys: `qa` queda `{}` y el reporte muestra `QA`. En esos casos no conserves un `qa` anterior.
+
+**Leer** sin pedir imagen si no hay imagen ni keys en el mensaje: abre `.cursor/data/hu-actuales.json`. Si existe y `keys` tiene al menos un elemento, úsalo, y `qa` si viene. No pidas captura en ese caso.
 
 **Pedir imagen** solo si no hay imagen, no hay keys en el mensaje y no hay archivo usable (falta, JSON inválido o `keys` vacío). Usa `AskQuestion`. No arranques sin IDs.
 
 Lectura de imagen (igual que review-sprint): extrae **todos** los IDs de la columna Historias de Usuario (`4815` → `AVCD-4815`), aunque el asignado no sea el usuario. El ID es el número al inicio de esa celda, pegado al título. No uses la columna de índice a la izquierda, ni horas, ni fechas (`17/09/2026`).
+
+En la misma fila, lee la columna de estrategia (el encabezado puede verse cortado). Si la celda es `QA_Equipo`, guárdala en `qa`. Si la columna no está, la celda está vacía o dice otra cosa, esa key no va en `qa` y el reporte muestra `QA`. No uses esta columna para ranquear.
 
 ## 2. Consultar Jira
 
@@ -76,7 +83,7 @@ Emoji de Estado (solo visual; detalle en la rule de reporte):
 
 ## 4. Reportar
 
-Mensaje al usuario: **solo** el formato de `.cursor/rules/priority-tasks-organizer-report.mdc`. No expliques el ranking. No anuncies que guardaste el tablero salvo que el usuario pregunte.
+Mensaje al usuario: **solo** el formato de `.cursor/rules/priority-tasks-organizer-report.mdc`. La columna `QA` es `QA_Equipo` si `qa` lo dice para esa key. Si no, pon `QA`. No expliques el ranking. No anuncies que guardaste el tablero salvo que el usuario pregunte.
 
 ## Qué no hacer
 

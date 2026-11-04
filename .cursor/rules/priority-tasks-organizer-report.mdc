@@ -10,24 +10,25 @@ Cuando termines un `priority-tasks-organizer`, el mensaje al usuario es **solo**
 ```markdown
 Siguiente: 🟢 [AVCD-4891](https://avaldigitallabs.atlassian.net/browse/AVCD-4891) — [BV-BM] Creación de Bolsillos
 
-| # | Key | Título | Estado |
-| --- | --- | --- | --- |
-| 1 | [AVCD-4891](https://avaldigitallabs.atlassian.net/browse/AVCD-4891) | [BV-BM] Creación de Bolsillos | 🟢 Listo para pruebas |
-| 2 | [AVCD-1301](https://avaldigitallabs.atlassian.net/browse/AVCD-1301) | [BV] Implementar lib de cifrado E2E y regresiones | 🟢 Listo para pruebas |
+| # | Key | Título | Estado | QA |
+| --- | --- | --- | --- | --- |
+| 1 | [AVCD-4891](https://avaldigitallabs.atlassian.net/browse/AVCD-4891) | [BV-BM] Creación de Bolsillos | 🟢 Listo para pruebas | QA_Equipo |
+| 2 | [AVCD-1301](https://avaldigitallabs.atlassian.net/browse/AVCD-1301) | [BV] Implementar lib de cifrado E2E y regresiones | 🟢 Listo para pruebas | QA |
 
 Fuera de cola
 
-| Key | Título | Estado |
-| --- | --- | --- |
-| [AVCD-4815](https://avaldigitallabs.atlassian.net/browse/AVCD-4815) | Envío SMS desde canal | ⚪ RELEASE |
+| Key | Título | Estado | QA |
+| --- | --- | --- | --- |
+| [AVCD-4815](https://avaldigitallabs.atlassian.net/browse/AVCD-4815) | Envío SMS desde canal | ⚪ RELEASE | QA |
 ```
 
 - Encabezado: `Siguiente: {emoji} {key link} — {título}`.
-- Cola: columnas `#`, `Key`, `Título`, `Estado` (emoji + nombre de Jira), en ese orden. `#1` es la siguiente.
-- Fuera de cola: `Key`, `Título`, `Estado`. Sin `#`.
+- Cola: columnas `#`, `Key`, `Título`, `Estado` (emoji + nombre de Jira), `QA`, en ese orden. `#1` es la siguiente.
+- Fuera de cola: `Key`, `Título`, `Estado`, `QA`. Sin `#`.
 - Título = `summary` de Jira.
+- `QA`: `QA_Equipo` si `qa` lo dice para esa key. Si no está, pon `QA`. No cambia el orden.
 - Emojis: 🟢 `Listo para pruebas` / `En pruebas`; 🟡 `En Desarrollo` / `Por Hacer` y resto activo; 🔴 `Bloqueado`; ⚪ `validacion po` / `RELEASE` / `Terminado` / `En producción`.
 - No muestres prioridad Jira, tipo, versiones ni “por qué”.
 - Si no hay cola activa: `Siguiente: no hay tareas pendientes de QA.` y solo Fuera de cola.
-- IDs de la imagen que Jira no devolvió: tabla `No encontradas` con la key cruda.
+- IDs de la imagen que Jira no devolvió: tabla `No encontradas` con la key cruda y `QA` (`QA_Equipo` si `qa` lo dice; si no, `QA`).
 - Si Jira falló, no armes estas tablas: muestra el error.

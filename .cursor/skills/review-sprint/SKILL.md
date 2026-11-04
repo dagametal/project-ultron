@@ -1,6 +1,6 @@
 ---
 name: review-sprint
-description: Revisa un sprint AVCD (presentación, demo de Historias con estado/TE/en la hoja) y publicaciones si vienen versiones x.x.x. Use when the user says review-sprint, revisar sprint, o review-sprint seguido de un número de sprint.
+description: Revisa un sprint AVCD (presentación, demo de Historias con estado/TE/en la hoja/QA) y publicaciones si vienen versiones x.x.x. Use when the user says review-sprint, revisar sprint, o review-sprint seguido de un número de sprint.
 when_to_use: El usuario dice review-sprint, revisar sprint, o `review-sprint 10` (el número es el sprint). Opcional: versiones `x.x.x` e imagen de Historias de Usuario para actualizar el tablero compartido.
 ---
 
@@ -16,7 +16,7 @@ En el mismo mensaje:
 
 - Sprint: el entero suelto (`review-sprint 10` → `AVCD Sprint 10`). No lo confundas con una versión `x.x.x`. Si falta, pídelo en texto y no arranques.
 - Versiones: cada `x.x.x` es una publicación, en el orden escrito. Si no hay ninguna, no hagas Publicaciones.
-- Imagen o keys: opcionales. Si vienen, **actualiza** `.cursor/data/hu-actuales.json` (misma regla que priority-tasks-organizer: extrae IDs de Historias de Usuario o normaliza keys; sobrescribe el JSON con `updatedAt`, `source` `image` o `keys`, y `keys` ordenadas). No pidas imagen solo para review si el archivo ya tiene keys.
+- Imagen o keys: opcionales. Si vienen, **actualiza** `.cursor/data/hu-actuales.json` (misma regla que priority-tasks-organizer: extrae IDs de Historias de Usuario o normaliza keys; sobrescribe el JSON con `updatedAt`, `source` `image` o `keys`, `keys` ordenadas y `qa`). En la imagen, guarda en `qa` solo la key cuya celda es `QA_Equipo`. Columna ausente, celda vacía, otro texto o actualización solo con keys: `qa` queda `{}`. No conserves un `qa` anterior. No pidas imagen solo para review si el archivo ya tiene keys.
 
 ## Tablero para «En la hoja»
 
@@ -26,6 +26,8 @@ Tras resolver entrada, carga el conjunto de IDs del tablero:
 - Si no, lee `.cursor/data/hu-actuales.json` si existe.
 
 Demo lleva la columna **En la hoja** (cuarta) si ese conjunto no está vacío (archivo o actualización en el mismo mensaje). Si no hay archivo usable ni imagen/keys en el mensaje, Demo sin cuarta columna (Historia, Estado, Test Execution).
+
+La columna **QA** va siempre al final. Valor `QA_Equipo` solo si `qa` de ese tablero lo dice para la key. Si la key no está, la historia no está en la hoja, no hay tablero o `qa` está vacío, pon `QA`. Sin tablero usable, QA sigue al final y todas las filas quedan en `QA`. No ordenes por esta columna.
 
 Comparación: el ID es el número al inicio de la celda de Historias de Usuario en la hoja (`4815` → coincide con `AVCD-4815`). Para cada Historia del sprint, el número de su key debe estar en `keys` del tablero (`335` no coincide con `1335`). 🟢 si coincide, 🔴 si no.
 
@@ -68,6 +70,7 @@ Columnas, en este orden:
 2. **Estado**: emoji + nombre de `fields.status.name` (misma convención que priority-tasks-organizer): 🟢 `Listo para pruebas`, `En pruebas`; 🟡 `En Desarrollo`, `Por Hacer` y resto activo no bloqueado; 🔴 `Bloqueado`; ⚪ `validacion po`, `RELEASE`, `Terminado`, `En producción`.
 3. **Test Execution**: enlace cuyo `type.name` es `Test` y el issue ligado (`inwardIssue` o `outwardIssue`) tiene `issuetype.name` `Test Execution`. Ignora los de tipo Test. Si hay varias, todas en la celda. Si no hay, `—`.
 4. **En la hoja**: ver sección Tablero arriba (solo si hay tablero usable).
+5. **QA**: siempre, al final. `QA_Equipo` si `qa[key]` es `QA_Equipo`; si no, `QA`.
 
 **Orden de filas** (después de armar todas las Historias; la JQL sigue `ORDER BY rank ASC` solo para traer datos y desempatar):
 
@@ -75,7 +78,7 @@ Columnas, en este orden:
 2. **Estado** (segunda columna): arriba las cuyo `fields.status.name` normalizado (minúsculas, sin tildes) es `validacion po`, `release` o `terminado`; abajo el resto.
 3. **Rank del sprint**: orden de aparición en la respuesta JQL paginada (`ORDER BY rank ASC`), sin reordenar entre páginas.
 
-No ordenes por key, summary ni TE.
+No ordenes por key, summary, TE ni QA.
 
 ## 3. Publicaciones
 

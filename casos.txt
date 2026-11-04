@@ -1,4 +1,6 @@
-Transferencia Bre-B: Se inicia la transacción desde la aplicación y, durante el proceso de pago, la aplicación es enviada a segundo plano. Se evidencia el correcto funcionamiento del flujo, sin afectaciones en la transacción.
-Pago con QR: Se inicia la transacción desde la aplicación y, durante el proceso de pago, la aplicación es enviada a segundo plano. Se evidencia el correcto funcionamiento del flujo, completando la operación satisfactoriamente.
-Transferencia Bre-B: Se inicia la transacción desde la aplicación y, durante el proceso de pago, la aplicación es enviada a segundo plano. Se evidencia el correcto funcionamiento del flujo, sin afectaciones en la transacción.
-Pago con QR: Se inicia la transacción desde la aplicación y, durante el proceso de pago, la aplicación es enviada a segundo plano. Se evidencia el correcto funcionamiento del flujo, completando la operación satisfactoriamente.
+Validar lista blanca, encendida para algunos usuarios apagada para el resto PB
+Validar lista blanca, apagada para algunos usuarios encendida para el resto PB
+Validar lista blanca, encendida para algunos usuarios apagada para el resto BM
+Validar lista blanca, apagada para algunos usuarios encendida para el resto BM
+
+
