@@ -1,6 +1,12 @@
-Validar lista blanca, encendida para algunos usuarios apagada para el resto PB
-Validar lista blanca, apagada para algunos usuarios encendida para el resto PB
-Validar lista blanca, encendida para algunos usuarios apagada para el resto BM
-Validar lista blanca, apagada para algunos usuarios encendida para el resto BM
+PB
+Validación de nueva visual en desktop — Google Chrome  
+Validación de nueva visual en desktop — Mozilla Firefox  
+Validación de nueva visual en desktop — Safari  
+Validación de nueva visual en tablet  
+Validación de nueva visual en mobile  
+Pruebas FT con funcionalidades independientes desactivadas — desktop  
+Pruebas FT con funcionalidades independientes desactivadas — tablet  
+Pruebas FT con funcionalidades independientes desactivadas — mobile  
 
-
+BM
+Validación de nueva visual en BM — iOS

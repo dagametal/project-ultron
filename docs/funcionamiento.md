@@ -105,7 +105,7 @@ Al final pregunta si se quiere añadir una Test Execution. Si la respuesta es **
 
 ## 4. Evidencias
 
-`comment` / `comment:txt` / `upload` trabajan contra el `ISSUE_KEY` definido en `jira-config.js`. `qa-cierre` recibe la HU por argumento.
+`comment` / `comment:txt` / `upload` trabajan contra el `ISSUE_KEY` definido en `jira-config.js`. `qa-cierre` recibe la HU por argumento. `release-test-execution-passed` recibe la versión (`3.16.0`).
 
 | Comando | Qué hace |
 | --- | --- |
@@ -113,6 +113,7 @@ Al final pregunta si se quiere añadir una Test Execution. Si la respuesta es **
 | `npm run comment:txt` | Comenta una tabla ADF leída de `casos.txt` (pregunta si ordenar alfabéticamente) |
 | `npm run upload` | Sube los archivos de `FOLDER_PATH` como adjuntos y comenta con el enlace |
 | `npm run qa-cierre -- 4549` | Cierra QA de una HU: subtarea QA: Cierre, TE/Tests a Terminado, PASSED en Xray, comentario de evidencias, HU en validacion po |
+| `npm run release-test-execution-passed -- 3.16.0` | En esa publicación, pasa a PASSED los runs TO DO y EXECUTING de las Test Execution de Historia, Tech Story y Error en Terminado, RELEASE o EN PRODUCCIÓN |
 
 ---
 
@@ -138,6 +139,7 @@ Al final pregunta si se quiere añadir una Test Execution. Si la respuesta es **
 | `npm run comment:txt` | `evidence-manager/comment-jira-from-txt.js` |
 | `npm run upload` | `evidence-manager/upload-jira.js` |
 | `npm run qa-cierre` | `evidence-manager/qa-cierre.js` |
+| `npm run release-test-execution-passed` | `evidence-manager/release-test-execution-passed.js` |
 
 La versión se pasa con `--`, por ejemplo: `npm run regression -- "4.12.0"`.
 

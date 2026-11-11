@@ -1,0 +1,25 @@
+---
+description: Tabla fija para reportar el resultado de release-test-execution-passed
+alwaysApply: true
+---
+
+# Reporte de release-test-execution-passed
+
+Cuando termines un `release-test-execution-passed`, el mensaje al usuario es **solo** esta tabla. Copia la que imprime `evidence-manager/release-test-execution-passed.js` (keys ya van como markdown), desde el encabezado. No uses bullets, listas ni un resumen aparte.
+
+```markdown
+release-test-execution-passed listo para Release 3.16.0.
+
+| HU | Estado | Test Execution | Resultado |
+| --- | --- | --- | --- |
+| [AVCD-3981](https://avaldigitallabs.atlassian.net/browse/AVCD-3981) | RELEASE | [AVCD-5466](https://avaldigitallabs.atlassian.net/browse/AVCD-5466) | 3 runs TO DO/EXECUTING → **PASSED** |
+| [AVCD-1396](https://avaldigitallabs.atlassian.net/browse/AVCD-1396) | RELEASE | [AVCD-1706](https://avaldigitallabs.atlassian.net/browse/AVCD-1706) | Sin pendientes |
+| [AVCD-1381](https://avaldigitallabs.atlassian.net/browse/AVCD-1381) | EN PRODUCCIÓN | [AVCD-4236](https://avaldigitallabs.atlassian.net/browse/AVCD-4236) | Sin pendientes |
+```
+
+- Encabezado: `release-test-execution-passed listo para {versión}.` La versión es el nombre resuelto en Jira (`Release 3.16.0`).
+- Filas: todas las Historia, Story, Tech Story y Error del fixVersion, en el orden del JS.
+- Columnas fijas: HU, Estado, Test Execution, Resultado.
+- Varias Test Execution en la misma celda, separadas por `, `. Sin Test Execution: `—`.
+- Resultado: `Otro estado`, `Sin Test Execution`, `Sin casos`, `Sin pendientes`, o `N runs TO DO/EXECUTING → **PASSED**`. Si hay FAILED, ABORTED o BLOCKED, la celda los lista como `No tocados`. Con varias Test Execution, cada una va prefijada por su key.
+- Si el JS falló, no armes esta tabla: muestra el error.
