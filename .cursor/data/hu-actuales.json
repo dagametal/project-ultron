@@ -1,40 +1,19 @@
 {
-  "updatedAt": "2026-10-29T08:05:00-05:00",
+  "updatedAt": "2026-11-11T17:15:00-05:00",
   "source": "image",
   "keys": [
+    "AVCD-5863",
     "AVCD-5028",
-    "AVCD-1392",
-    "AVCD-1949",
-    "AVCD-3979",
-    "AVCD-5589",
     "AVCD-5558",
-    "AVCD-5559",
-    "AVCD-1305",
-    "AVCD-5045",
-    "AVCD-5099",
-    "AVCD-3739",
-    "AVCD-5554",
-    "AVCD-5651",
-    "AVCD-5755",
-    "AVCD-5758",
-    "AVCD-5759"
+    "AVCD-5862",
+    "AVCD-1142",
+    "AVCD-5434",
+    "AVCD-5923",
+    "AVCD-5101",
+    "AVCD-5094"
   ],
   "qa": {
     "AVCD-5028": "QA_Equipo",
-    "AVCD-1392": "QA_Equipo",
-    "AVCD-1949": "QA_Equipo",
-    "AVCD-3979": "QA",
-    "AVCD-5589": "QA",
-    "AVCD-5558": "QA_Equipo",
-    "AVCD-5559": "QA",
-    "AVCD-1305": "QA",
-    "AVCD-5045": "QA_Equipo",
-    "AVCD-5099": "QA_Equipo",
-    "AVCD-3739": "QA_Equipo",
-    "AVCD-5554": "QA_Equipo",
-    "AVCD-5651": "QA_Equipo",
-    "AVCD-5755": "QA",
-    "AVCD-5758": "QA",
-    "AVCD-5759": "QA_Equipo"
+    "AVCD-5558": "QA_Equipo"
   }
 }
